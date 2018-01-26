@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
-
+import { DataService } from './services/data.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,9 +14,11 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

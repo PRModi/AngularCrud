@@ -1,3 +1,86 @@
-<p>
-  home works!
-</p>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form novalidate [formGroup]="productForm" (ngSubmit)="submit()">
+          <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input formControlName="productName" type="text" id="productName" class="form-control">
+
+          </div>
+          <div class="form-group">
+            <label for="productPrice">Product Price</label>
+            <input formControlName="productPrice" type="number" id="productPrice" class="form-control">
+
+          </div>
+
+          <button type="button" (click)="submit()" class="btn btn-outline-secondary" [disabled]="!productForm.valid" data-dismiss="modal">Submit</button>
+          <br>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-lg-6 col-xl-6 mb-r">
+      <br>
+      <p>Angular 2 QuickStart</p>
+
+      <div>
+        <button class="btn btn-primary">Current User : Test@Test.com</button>
+      </div>
+      <br>
+
+      <div>
+        <button type="button" (click)="addProduct()" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+          Add Product
+        </button>
+      </div>
+      <br>
+
+      <div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Product Price</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="productList.length<1">
+              <td colspan="3" class="text-center">No products listed</td>
+            </tr>
+            <tr *ngFor="let product of productList; let i=index">
+
+              <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="editProduct(i)">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-danger" (click)="deleteProduct(i)">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </td>
+              <td>{{product.name }}</td>
+              <td>{{product.price | currency}}</td>
+
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
